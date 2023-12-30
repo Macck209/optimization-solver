@@ -1,12 +1,10 @@
 # Optimization solver - W.I.P!!!
 Simple graphic calculator for optimization problems with report generator.
 
-<figure>
-  <img src="preview.png" alt="About" style="width: 100%">
-</figure> 
+<img src="res/preview.PNG" alt="About" style="width: 100%">
 
 ### Features
-- Evolution algorythm-based solver
+- Genetic algorythm-based solver
 - Import/export reports (short PDFs)
 - Minimalistic GUI
 - Theme selector
