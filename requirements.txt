@@ -1,0 +1,5 @@
+customtkinter==5.2.1
+mpmath==1.3.0
+sympy==1.12
+packaging==23.2
+#manim==0.17.3

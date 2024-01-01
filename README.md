@@ -11,8 +11,7 @@ Simple graphic calculator for optimization problems with report generator.
 
 ### Requirements: 
 - Python 3.10
-- Manim library
-- customTKinter library
+- pip install -r requirements.txt
 
 ### Getting Started
 
