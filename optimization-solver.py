@@ -11,13 +11,13 @@ class App(customtkinter.CTk):
         customtkinter.set_appearance_mode("System")
         customtkinter.set_default_color_theme("dark-blue")
 
-        self.geometry("700x500")
+        self.geometry("700x600")
         self.title("Optimal Solver")
         
-        self.grid_columnconfigure(0, weight=60)
+        self.grid_columnconfigure(0, weight=50)
         self.grid_columnconfigure(1, weight=40)
-        self.grid_rowconfigure((0, 1), weight=70)
-        self.grid_rowconfigure(2, weight=30)
+        self.grid_rowconfigure((0, 1), weight=80)
+        self.grid_rowconfigure(2, weight=20)
             
         self.config_frame = InputFrame(self)
         self.config_frame.grid(row=0, column=0, padx=(10, 0), pady=10, sticky="nswe", rowspan=3)
