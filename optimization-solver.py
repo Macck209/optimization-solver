@@ -27,9 +27,11 @@ class App(customtkinter.CTk):
         self.options_frame.grid(row=2, column=1, padx=10, pady=(0, 10), sticky="nswe", rowspan=1)
         
     def run_solver(self, maximize, target_func, conditions, positive_condition, integer_condition, generations_num, mutation_factor):
+        # TODO integration or/and unit testing
         result = calculation_script.solve(maximize, target_func, conditions, positive_condition, integer_condition, generations_num, mutation_factor)
         
-        # TODO add catching exceptions, errors
+        self.config_frame.start_btn.configure(state="normal")
+        
         self.result_frame.show_results(result)
         
 if __name__ == "__main__":

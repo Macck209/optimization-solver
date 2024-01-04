@@ -34,17 +34,18 @@ class InputFrame(customtkinter.CTkFrame):
             
             self.condition_var_names.append(var_name)
             
-            exec(f"self.{var_name} = customtkinter.CTkEntry(self, placeholder_text=\"-\")")
-            exec(f"self.{var_name}.grid(row={i+5 if i<4 else i+1}, column={0 if i<4 else 1}, padx=10, pady=0, sticky=\"nwe\")")
-            
+            setattr(self, var_name, customtkinter.CTkEntry(self, placeholder_text="-"))
+            getattr(self, var_name).grid(row=i+5 if i<4 else i+1, column=0 if i<4 else 1, padx=10, pady=0, sticky="nwe")
+    
             if var_name == "cond_entry_0":
-                exec(f"self.{var_name}.configure(placeholder_text=\"e.g. a >= -2\")")
+                getattr(self, var_name).configure(placeholder_text="e.g. a >= -2")
             
         self.variables_positive_checkbox = customtkinter.CTkCheckBox(self, text="Positive variables condition", font=fonts.ARIAL_DEFAULT_16, checkbox_height=16, checkbox_width=16, border_width=2)
         self.variables_positive_checkbox.grid(row=9, column=0, padx=10, pady=0, sticky="nw", columnspan=2)
         
         self.variables_integers_checkbox = customtkinter.CTkCheckBox(self, text="Integer condition", font=fonts.ARIAL_DEFAULT_16, checkbox_height=16, checkbox_width=16, border_width=2)
         self.variables_integers_checkbox.grid(row=10, column=0, padx=10, pady=0, sticky="nw", columnspan=2)
+        self.variables_integers_checkbox.select()
         
         self.generation_num_label = customtkinter.CTkLabel(self, text="Max generations:", font=fonts.ARIAL_DEFAULT)
         self.generation_num_label.grid(row=11, column=0, padx=10, pady=0, sticky="w")
@@ -60,16 +61,16 @@ class InputFrame(customtkinter.CTkFrame):
         self.start_btn.grid(row=13, column=0, padx=10, pady=10, sticky="swe", columnspan=2)
         
     def pass_input(self):
+        self.start_btn.configure(state="disabled")
         self.maximize = True if self.direction_opt_menu.get() == "Maximize" else False
         self.target_func = self.target_func_entry.get() if self.target_func_entry.get() != "" else self.target_func
         
         self.conditions.clear()
         for cond_var_name in self.condition_var_names:
-            if exec(f"self.{cond_var_name}.get()") != None:
-                self.conditions.append(exec(f"self.{cond_var_name}.get()"))
-            #print(exec(f"self.{cond_var_name}.get()"))
-        #print(self.condition_var_names)
-        #print(self.conditions)
+            entry_val = getattr(self, cond_var_name).get()
+            if entry_val is not None and entry_val != '':
+                self.conditions.append(entry_val)
+                
         self.positive_condition = self.variables_positive_checkbox.get()
         self.integer_condition = self.variables_integers_checkbox.get()
         
