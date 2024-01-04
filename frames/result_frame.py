@@ -1,6 +1,5 @@
 import customtkinter
 import res.font_constants as fonts
-import report_generator
 
 class ResultFrame(customtkinter.CTkFrame):
     def __init__(self, master):
