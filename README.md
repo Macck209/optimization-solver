@@ -18,6 +18,9 @@ Simple graphic calculator for optimization problems with report generator.
 1. Clone this repository
    ```bash
    git clone https://github.com/Macck209/optimization-solver
-2. Run the script
-    ```bash
-    python optimization-solver.py
+2. Install dependencies
+   ```bash
+   pip install -r requirements.txt --upgrade
+3. Run the script
+   ```bash
+   python optimization-solver.py

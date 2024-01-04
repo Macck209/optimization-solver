@@ -26,12 +26,10 @@ class App(customtkinter.CTk):
         self.options_frame = OptionsFrame(self)
         self.options_frame.grid(row=2, column=1, padx=10, pady=(0, 10), sticky="nswe", rowspan=1)
         
-    def run_solver(self, maximize, target_func, condition_1):
-        result = calculation_script.solve(maximize, target_func, condition_1)
+    def run_solver(self, maximize, target_func, conditions, positive_condition, integer_condition, generations_num, mutation_factor):
+        result = calculation_script.solve(maximize, target_func, conditions, positive_condition, integer_condition, generations_num, mutation_factor)
         
-        self.show_results(result)
-        
-    def show_results(self, result):
+        # TODO add catching exceptions, errors
         self.result_frame.show_results(result)
         
 if __name__ == "__main__":
