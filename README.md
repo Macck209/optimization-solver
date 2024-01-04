@@ -1,11 +1,11 @@
 # Optimization solver - W.I.P!!!
-Simple graphic calculator for optimization problems with report generator.
+Lightweight graphic calculator for optimization problems with report generation.
 
 <img src="res/preview.PNG" alt="About" style="width: 100%">
 
 ### Features
-- Genetic algorythm-based solver
-- Import/export reports (short PDFs)
+- Genetic-algorythm-based solver
+- Generate graph to showcase algorithms work
 - Minimalistic GUI
 - Theme selector
 
@@ -24,3 +24,9 @@ Simple graphic calculator for optimization problems with report generator.
 3. Run the script
    ```bash
    python optimization-solver.py
+### Planned features:
+- import/export reports (short PDFs)
+- _update_ btn in Config
+- more Config options: binary variables condition, sub-generations count, infinite conditions
+- actual integration testing
+- check packaging for more python versions
