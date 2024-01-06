@@ -28,11 +28,11 @@ class App(customtkinter.CTk):
         
     def run_solver(self, maximize, target_func, conditions, positive_condition, integer_condition, generations_num, mutation_factor):
         # TODO integration or/and unit testing
-        result = calculation_script.solve(maximize, target_func, conditions, positive_condition, integer_condition, generations_num, mutation_factor)
+        result, graph_data = calculation_script.solve(maximize, target_func, conditions, positive_condition, integer_condition, generations_num, mutation_factor)
         
         self.config_frame.start_btn.configure(state="normal")
         
-        self.result_frame.show_results(result)
+        self.result_frame.set_results(result, graph_data)
         
 if __name__ == "__main__":
     app = App()

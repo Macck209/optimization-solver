@@ -49,7 +49,7 @@ class InputFrame(customtkinter.CTkFrame):
         
         self.generation_num_label = customtkinter.CTkLabel(self, text="Max generations:", font=fonts.ARIAL_DEFAULT)
         self.generation_num_label.grid(row=11, column=0, padx=10, pady=0, sticky="w")
-        self.generation_num_entry = customtkinter.CTkEntry(self, placeholder_text="Default: 1000")
+        self.generation_num_entry = customtkinter.CTkEntry(self, placeholder_text="Default: 1000, Min: 100")
         self.generation_num_entry.grid(row=11, column=1, padx=10, pady=0, sticky="we")
         
         self.mutation_factor_label = customtkinter.CTkLabel(self, text="Mutation factor:", font=fonts.ARIAL_DEFAULT)
@@ -63,6 +63,7 @@ class InputFrame(customtkinter.CTkFrame):
     def pass_input(self):
         self.start_btn.configure(state="disabled")
         self.maximize = True if self.direction_opt_menu.get() == "Maximize" else False
+        # TODO clearing entry doesnt revert to default func
         self.target_func = self.target_func_entry.get() if self.target_func_entry.get() != "" else self.target_func
         
         self.conditions.clear()
