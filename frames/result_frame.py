@@ -37,7 +37,7 @@ class ResultFrame(customtkinter.CTkFrame):
         self.result_textbox.configure(state="disabled")
     
     def render_report(self):
-        if len(self.graph_data) < 0:#100:
+        if len(self.graph_data) < 0: # TODO check for data len = 1
             self.result_textbox.configure(state="normal")
             self.result_textbox.insert("end", "\nNot enough data for the report")
             self.result_textbox.configure(state="disabled")
