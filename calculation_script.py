@@ -75,4 +75,8 @@ def calc_target_func(equasion, values, conditions, maximize):
     for cond in conditions:
         penalty += (-10**10 if maximize else 10**10) if not cond.subs(values) else 0
     
-    return equasion.subs(values) + penalty
+    # this is scuffed > need to re-thing
+    try:
+        return int(equasion.subs(values) + penalty)
+    except Exception:
+        return -10**30 if maximize else 10**30

@@ -4,3 +4,4 @@
 tests/
 report_generator.py
 reports/
+.vscode/

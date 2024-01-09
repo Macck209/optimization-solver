@@ -48,7 +48,13 @@ class ResultFrame(customtkinter.CTkFrame):
             render_thread.start()
     
     def render_report_async(self):
-        scene = DataGraph(self.graph_data)
+        scene = DataGraph(self, self.graph_data)
         scene.render(True)
         
+        self.generate_report_btn.configure(state="normal")
+        
+    def show_report_error(self):
+        self.result_textbox.configure(state="normal")
+        self.result_textbox.insert("end", "\nError while generating report")
+        self.result_textbox.configure(state="disabled")
         self.generate_report_btn.configure(state="normal")

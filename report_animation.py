@@ -5,14 +5,15 @@ class DataGraph(Scene):
     
     config.media_dir="reports"
     
-    def __init__(self, graph_data, **kwargs):
-        # max 100+1 data points
+    def __init__(self, master, graph_data, **kwargs):
+        # max 99+1 data points
         step = int(len(graph_data)/100) if len(graph_data)>=100 else 1
         self.graph_data = graph_data[::step]
-        
         # Always contain last data tuple
         if self.graph_data[-1] != graph_data[-1]:
             self.graph_data.append(graph_data[-1])
+        
+        self.master=master
         
         super().__init__(**kwargs)
     
@@ -28,17 +29,23 @@ class DataGraph(Scene):
             starting_val = last_y
         
         # TODO fix 'maximum size exceeded' for a^3-(500*a)^2 - is a*500^2 too big?
-        plane = NumberPlane(
-            x_range = (1, self.graph_data[-1][0], int(self.graph_data[-1][0] / 10)),
-            y_range = (starting_val, final_val, (abs(final_val - starting_val) / 10)),
-            x_length = 10,
-            y_length = 5.625,
-            axis_config={"include_numbers": True},
-            y_axis_config={
-                "label_direction": LEFT,
-                #"decimal_number_config": {"num_decimal_places": 2}
-                },
-        )
+        # also a^(1/2), a=-1
+        try:
+            plane = NumberPlane(
+                x_range = (1, self.graph_data[-1][0], int(self.graph_data[-1][0] / 10) if self.graph_data[-1][0] != 0 else 1),
+                y_range = (starting_val, final_val, (abs(final_val - starting_val) / 10) if abs(final_val - starting_val) != 0 else 1),
+                x_length = 10,
+                y_length = 5.625,
+                axis_config={"include_numbers": True},
+                y_axis_config={
+                    "label_direction": LEFT,
+                    #"decimal_number_config": {"num_decimal_places": 2}
+                    },
+            )
+        except Exception:
+            self.master.show_report_error()
+            sys.exit()
+        
         plane.center()
         
         labels = plane.get_axis_labels(

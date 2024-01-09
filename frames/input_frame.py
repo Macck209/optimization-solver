@@ -49,7 +49,7 @@ class InputFrame(customtkinter.CTkFrame):
         
         self.generation_num_label = customtkinter.CTkLabel(self, text="Max generations:", font=fonts.ARIAL_DEFAULT)
         self.generation_num_label.grid(row=11, column=0, padx=10, pady=0, sticky="w")
-        self.generation_num_entry = customtkinter.CTkEntry(self, placeholder_text="Default: 1000, Min: 100")
+        self.generation_num_entry = customtkinter.CTkEntry(self, placeholder_text="Default: 500, Min: 100")
         self.generation_num_entry.grid(row=11, column=1, padx=10, pady=0, sticky="we")
         
         self.mutation_factor_label = customtkinter.CTkLabel(self, text="Mutation factor:", font=fonts.ARIAL_DEFAULT)
@@ -78,7 +78,7 @@ class InputFrame(customtkinter.CTkFrame):
         try:
             self.generations_num = int(self.generation_num_entry.get())
         except ValueError:
-            self.generations_num = 1000
+            self.generations_num = 500
             
         try:
             self.mutation_factor = float(self.mutation_factor_entry.get())
